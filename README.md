@@ -40,7 +40,7 @@ After setting up, Easy Commit will be automatically launched when ` git commit -
 
 
 # Support
-If you have any problems you can open a issue on this repository.
+If you have any problems you can open an issue on this repository.
 
 # License
 Easy Commit is distributed under [MIT License](/LICENSE).
