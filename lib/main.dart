@@ -4,13 +4,7 @@ import 'fundamental/type_selector.dart';
 import 'package:multi_split_view/multi_split_view.dart';
 import 'commit_message/commit_msg.dart';
 import 'package:easy_commit_client/fundamental/local_storage.dart';
-import 'setup/setup.dart';
-
-// void main(List<String> arguments) {
-//   if (arguments.isNotEmpty) {
-//     // Insert your code using arguments here.
-//   }
-// }
+import 'package:window_manager/window_manager.dart';
 
 
 class LaunchConfig {
@@ -39,6 +33,18 @@ Future<void> main(List<String> arguments) async {
   await LocalStorage.init();
 
   LaunchConfig launchConfig = LaunchConfig(page, commitMsgFile);
+
+
+  // Must add this line.
+  await windowManager.ensureInitialized();
+
+  WindowOptions windowOptions = const WindowOptions(
+    center: true,
+  );
+  windowManager.waitUntilReadyToShow(windowOptions, () async {
+    await windowManager.show();
+    await windowManager.focus();
+  });
 
   runApp(MyApp(launchConfig: launchConfig));
 }
