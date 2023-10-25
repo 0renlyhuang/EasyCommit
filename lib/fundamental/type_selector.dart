@@ -44,7 +44,7 @@ class TypeSelectorState extends State<TypeSelector> {
     shouldRememberLastChoice = widget.shouldRememberInitValue;
 
     int? defaultSelectedIndex = widget.defaultSelectedIndex;
-    if (defaultSelectedIndex != null && defaultSelectedIndex > 0 && defaultSelectedIndex < widget.onGetList().length) {
+    if (defaultSelectedIndex != null && defaultSelectedIndex >= 0 && defaultSelectedIndex < widget.onGetList().length) {
       selectedIndex = defaultSelectedIndex;
 
       Timer.run((){
