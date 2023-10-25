@@ -68,8 +68,16 @@ class GitHookMgr {
 
 
     String cmd = '''
-easy_commit_git_workspace=\$(git rev-parse --show-toplevel)
-git_editing_file="\$easy_commit_git_workspace/\$1"
+if [[ "\$1" = /* ]];
+then
+    : # Absolute path
+    git_editing_file="\$1"
+else
+   : # Relative path
+    easy_commit_git_workspace=\$(git rev-parse --show-toplevel)
+    git_editing_file="\$easy_commit_git_workspace/\$1"
+fi
+
 '$appPath' commit_message \$git_editing_file
 status=\$?
 if [ \$status -ne 0 ]; then
